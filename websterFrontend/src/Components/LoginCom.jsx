@@ -1,6 +1,8 @@
 import React from "react"
 import { LoginAPI } from "../api/auth"
 import img1 from '/Linkedin.png'
+import img2 from '/man.jpg'
+import img3 from '/clouds.jpg'
 import '../sass/styling.scss'
 export default function LoginComponent(){
     function handle(){
@@ -8,6 +10,7 @@ export default function LoginComponent(){
         console.log(result)
     }
     const [formData,setFormData]=React.useState({
+        username:"",
         email:"",
         password:"",
     })
@@ -21,29 +24,45 @@ export default function LoginComponent(){
     }
     console.log(formData)
     return(
-        <div className="main-container">
-            <div className="image-container"> 
-                <img src={img1} />
+        <div className="container">
+            <div className="header">
+                <div className="text">Sign In</div>
+                <div className="underline"></div>
             </div>
-            <div className="form-container">
-            <h1>Login</h1>
-            <input 
-             type="text" 
-             name="email"
-             value={formData.email}
-             placeholder="Enter Your Email"
-             onChange={change}      
-            />
-            <input
-             type="text"
-             name="password"
-             value={formData.password}
-             placeholder="password"
-             onChange={change}
-            />
+            <div className="inputs">
+            <div className="input">
+                <input 
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  placeholder="Enter Your Username"
+                  onChange={change}
+                />
+            </div>
+            <div className="input">
+              <input 
+                type="text" 
+                name="email"
+                value={formData.email}
+                placeholder="Enter Your Email"
+                onChange={change}      
+              />
+            </div>
+            <div className="input">
+              <input
+               type="password"
+               name="password"
+               value={formData.password}
+               placeholder="Password"
+               onChange={change}
+              />
+            </div>
             
-            <button onClick={handle}>sign in</button>
-            <button onClick={handle}>sign in with google</button>
+            <div className="submit-container">
+              <div className="submit" onClick={handle}>Sign up</div>
+              <div className="submit" onClick={handle}>Login</div>
+            </div>
+            
             </div>
         </div>
     )
