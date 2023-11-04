@@ -1,8 +1,6 @@
 import React from "react"
 import { LoginAPI } from "../api/auth"
-import img1 from '/Linkedin.png'
-import img2 from '/man.jpg'
-import img3 from '/clouds.jpg'
+
 import '../sass/styling.scss'
 export default function LoginComponent(){
     function handle(){
