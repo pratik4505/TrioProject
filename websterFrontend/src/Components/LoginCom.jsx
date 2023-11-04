@@ -1,6 +1,7 @@
 import React from "react"
 import { LoginAPI } from "../api/auth"
-
+import img1 from '/Linkedin.png'
+import '../sass/styling.scss'
 export default function LoginComponent(){
     function handle(){
         let result=LoginAPI()
@@ -20,7 +21,11 @@ export default function LoginComponent(){
     }
     console.log(formData)
     return(
-        <div>
+        <div className="main-container">
+            <div className="image-container"> 
+                <img src={img1} />
+            </div>
+            <div className="form-container">
             <h1>Login</h1>
             <input 
              type="text" 
@@ -37,7 +42,9 @@ export default function LoginComponent(){
              onChange={change}
             />
             
-            <button onClick={handle}>submit</button>
+            <button onClick={handle}>sign in</button>
+            <button onClick={handle}>sign in with google</button>
+            </div>
         </div>
     )
 }
