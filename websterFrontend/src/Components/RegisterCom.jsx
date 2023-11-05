@@ -1,17 +1,17 @@
 import React from "react"
-import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { LoginAPI } from "../api/auth"
+import { RegisterAPI } from "../api/auth"
 
 import '../sass/styling.scss'
-export default function LoginComponent(){
-  const nav=useNavigate()
+export default function RegisterComponent(){
+    const nav=useNavigate()
     function handle(){
-      //actual function to come here
-      let result=LoginAPI()
-      console.log("ok")  
+        //actual function to come here
+        let result=RegisterAPI()
+        console.log("ok")
     }
     const [formData,setFormData]=React.useState({
+        username:"",
         email:"",
         password:"",
     })
@@ -27,10 +27,19 @@ export default function LoginComponent(){
     return(
         <div className="container">
             <div className="header">
-                <div className="text">Log In</div>
+                <div className="text">Sign Up</div>
                 <div className="underline"></div>
             </div>
             <div className="inputs">
+            <div className="input">
+                <input 
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  placeholder="Enter Your Username"
+                  onChange={change}
+                />
+            </div>
             <div className="input">
               <input 
                 type="text" 
@@ -51,7 +60,7 @@ export default function LoginComponent(){
             </div>
             
             <div className="submit-container">
-              <div className="submit" onClick={handle}>Login</div>
+              <div className="submit" onClick={handle}>Sign up</div>
             </div>
             
             </div>

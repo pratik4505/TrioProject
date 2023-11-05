@@ -1,0 +1,49 @@
+// Navbar designing
+.navbar-container{
+    display:flex;
+    flex-direction: column;
+    align-items: left;
+    background-color:white;
+    justify-content: center;
+    position: absolute;
+    top:0px;
+    width:100%;
+    height:70px
+}
+img{
+    width:90px;
+    margin-right:auto;
+}
+.react-icons{
+    margin-top: 18px;
+    color:rgba(128,128,128,0.9);
+    
+    
+}
+.react-icons:hover{
+    color:black;
+}
+.nav-bar{
+    display: flex;
+    
+}
+.link-bar{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+span{
+    padding:auto;
+    position: relative;
+    bottom:10px;
+    text-align: center;
+    color: black;
+}
+.link-bar2{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+a{
+    color:black;
+}

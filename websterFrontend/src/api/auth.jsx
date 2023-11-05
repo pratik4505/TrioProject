@@ -1,3 +1,6 @@
 export const LoginAPI= ()=>{
-    return "routed teri maa ki chut successfully"
+    return "Login successfully"
+}
+export const RegisterAPI=()=>{
+    return "Registered successfully"
 }
