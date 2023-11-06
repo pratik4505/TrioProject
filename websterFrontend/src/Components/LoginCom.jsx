@@ -1,14 +1,13 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
 import { LoginAPI } from "../api/auth"
-<<<<<<< HEAD
+
 import { AiOutlineUser } from 'react-icons/ai';
 import {BsKey} from 'react-icons/bs';
 
 
-=======
 import NoteContext from '../context/NoteContext'
->>>>>>> 6ffbf52173d523286647e005f63389149b2a02ba
+
 import '../sass/styling.scss'
 export default function LoginComponent(){
   const a=React.useContext(NoteContext)
