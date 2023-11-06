@@ -7,8 +7,8 @@ export default function LoginComponent(){
   const a=React.useContext(NoteContext)
   
   const nav=useNavigate()
-  async function handle(){
-    try{
+   function handle(){
+   /* try{
       let response=await LoginAPI(formData)
       if(response==="ok"){
       nav("/")
@@ -17,7 +17,9 @@ export default function LoginComponent(){
       }
     }catch(error){
       console.log(`${error}`)
-    } 
+    } */
+    a.update();
+      nav("/")
   }
     const [formData,setFormData]=React.useState({
         email:"",

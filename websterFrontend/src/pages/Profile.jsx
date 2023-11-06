@@ -3,9 +3,22 @@ import Navbar from '../Components/Navbar'
 import { useNavigate } from "react-router-dom";
 import NoteContext from '../context/NoteContext'
 export default function Profile(){
+
     const nav=useNavigate()
     const a=React.useContext(NoteContext)
-    
+    console.log(a.nameState)
+    function handle(){
+        a.update()
+        nav("/")
+    }
+    let response=true
+    async function check(){
+       response=await (a.nameState) 
+       console.log(response)
+       if(response===false)
+      nav("/Login")
+    }
+    check()
     
     return (
     <div>
@@ -24,6 +37,7 @@ export default function Profile(){
       <div className='secondary-description'>
         <p>something more....</p>
         <p>something more.....</p>
+        <button onClick={handle}>Logout</button>
       </div>
     </div>
     </div>
