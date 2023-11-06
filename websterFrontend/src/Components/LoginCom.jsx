@@ -2,6 +2,9 @@ import React from "react"
 import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { LoginAPI } from "../api/auth"
+import { AiOutlineUser } from 'react-icons/ai';
+import {BsKey} from 'react-icons/bs';
+
 
 import '../sass/styling.scss'
 export default function LoginComponent(){
@@ -29,35 +32,49 @@ export default function LoginComponent(){
     console.log(formData)
     return(
         <div className="container">
-            <div className="header">
-                <div className="text">Log In</div>
-                <div className="underline"></div>
+          
+          <div className="form-box">
+
+            <h1>Log in</h1>   
+
+            <div className="input-group">
+              
+
+              <div className="input-field">
+              < AiOutlineUser  className="react-icons"/>
+                <input 
+                  type="text" 
+                  name="email"
+                  value={formData.email}
+                  placeholder="Email"
+                  onChange={change}      
+                />
+              </div>
+
+              <div className="input-field">
+              < BsKey className="react-icons"/>
+                <input
+                type="password"
+                name="password"
+                value={formData.password}
+                placeholder="Password"
+                onChange={change}
+                />
+              </div>
+
+              <p>Lost password <a href="#">Click Here!</a></p>
+
+              <div className="submit-container">
+                <div className="submit" onClick={handle}>Log in</div>
+                <div className="submitG">Log in with Google</div>
+              </div>
+
+              <div className="register">Dont have an account? <a href="/register"> Register</a></div>
+
+              
             </div>
-            <div className="inputs">
-            <div className="input">
-              <input 
-                type="text" 
-                name="email"
-                value={formData.email}
-                placeholder="Enter Your Email"
-                onChange={change}      
-              />
-            </div>
-            <div className="input">
-              <input
-               type="password"
-               name="password"
-               value={formData.password}
-               placeholder="Password"
-               onChange={change}
-              />
-            </div>
-            
-            <div className="submit-container">
-              <div className="submit" onClick={handle}>Login</div>
-            </div>
-            
-            </div>
+          
+          </div>
         </div>
     )
 }
