@@ -1,18 +1,15 @@
 import React from "react"
-import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { LoginAPI } from "../api/auth"
-
+import NoteContext from '../context/NoteContext'
 import '../sass/styling.scss'
 export default function LoginComponent(){
+  const a=React.useContext(NoteContext)
+  
   const nav=useNavigate()
     function handle(){
-      //actual function to come here
-      //just temp for checking
-      if(formData.email!=""){
-      nav("/")}else{
-      console.log(err)
-      }
+      
+      nav("/")
     }
     const [formData,setFormData]=React.useState({
         email:"",
