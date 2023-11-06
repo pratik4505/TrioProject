@@ -8,8 +8,11 @@ export default function LoginComponent(){
   const nav=useNavigate()
     function handle(){
       //actual function to come here
-      let result=LoginAPI()
-      console.log("ok")  
+      //just temp for checking
+      if(formData.email!=""){
+      nav("/")}else{
+      console.log(err)
+      }
     }
     const [formData,setFormData]=React.useState({
         email:"",

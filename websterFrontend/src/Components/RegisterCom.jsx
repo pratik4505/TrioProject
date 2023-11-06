@@ -7,8 +7,11 @@ export default function RegisterComponent(){
     const nav=useNavigate()
     function handle(){
         //actual function to come here
-        let result=RegisterAPI()
-        console.log("ok")
+        //just temp for checking
+      if(formData.email!="" || formData.username!=""){
+        nav("/")}else{
+        console.log(err)
+        }
     }
     const [formData,setFormData]=React.useState({
         username:"",

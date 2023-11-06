@@ -5,7 +5,6 @@ export default function Register(){
     const nav=useNavigate()
     return (
         <div>
-            <Navbar></Navbar>
             <RegisterComponent />
         </div>
             
