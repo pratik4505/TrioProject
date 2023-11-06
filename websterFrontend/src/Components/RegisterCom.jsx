@@ -5,13 +5,17 @@ import { RegisterAPI } from "../api/auth"
 import '../sass/styling.scss'
 export default function RegisterComponent(){
     const nav=useNavigate()
-    function handle(){
-        //actual function to come here
-        //just temp for checking
-      if(formData.email!="" || formData.username!=""){
-        nav("/")}else{
-        console.log(err)
+    async function handle(){
+      try{
+        let response=await RegisterAPI(formData)
+        if(response==="ok"){
+        //nav("/OTP")
+        }else{
+          console.log(response)
         }
+      }catch(error){
+        console.log(`${error}`)
+      } 
     }
     const [formData,setFormData]=React.useState({
         username:"",
