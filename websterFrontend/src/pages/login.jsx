@@ -1,6 +1,11 @@
 import LoginComponent from "../Components/LoginCom"
+import Navbar from "../Components/Navbar"
 export default function Login(){
     return (
-       <LoginComponent />
+        <div>
+            <Navbar></Navbar>
+            <LoginComponent />
+        </div>
+            
     )
 }
