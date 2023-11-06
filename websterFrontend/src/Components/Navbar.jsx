@@ -14,28 +14,28 @@ export default function Navbar(){
             <div className='nav-bar'>
                 <img src="/linked.png"></img>
               <div className='link-bar'>
-                <a href="/">< AiFillHome size={40} className="react-icons"/></a>
-                <span><a href="/">Home</a></span>
+                <Link to='/'>< AiFillHome size={40} className="react-icons"/></Link>
+                <span><Link to='/'>Home</Link></span>
                </div>
                <div className='link-bar'>
-                <a href="/Jobs">< BsBriefcase size={40} className="react-icons"/></a>
-                <span><a href="/Jobs">Jobs</a></span>
+                <Link to="/Jobs"><BsBriefcase size={40} className="react-icons"/></Link>
+                <span><Link to="/Jobs">Jobs</Link></span>
                </div>
                <div className='link-bar'>
-                <a href="/Requests">< MdEmojiPeople size={40} className="react-icons"/></a>
-                <span><a href="/Requests">Request</a></span>
+                <Link to="/Requests">< MdEmojiPeople size={40} className="react-icons"/></Link>
+                <span><Link>Request</Link></span>
                </div>
                <div className='link-bar'>
-                <a href="/Message">< BiSolidMessageDetail size={40} className="react-icons"/></a>
-                <span><a href="/Message">Message</a></span>
+                <Link to="/Message">< BiSolidMessageDetail size={40} className="react-icons"/></Link>
+                <span><Link to="/Message">Message</Link></span>
                </div>
                <div className='link-bar'>
-                <a href="/Notifications">< IoIosNotifications size={40} className="react-icons"/></a>
-                <span><a href="/Notifications">Notifty</a></span>
+                <Link to="/Notifications">< IoIosNotifications size={40} className="react-icons"/></Link>
+                <span><Link to="/Notifications">Notify</Link></span>
                </div>
                <div className='link-bar'>
-                <a href="/Profile">< BiUserCircle size={40} className="react-icons"/></a>
-                <span><a href="/Profile">Profile</a></span>
+                <Link to="/Profile">< BiUserCircle size={40} className="react-icons"/></Link>
+                <span><Link to="/Profile">Profile</Link></span>
                </div>
             </div>
         </div>

@@ -1,25 +1,13 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import "../sass/HomeDesign.scss"
+import NoteContext from '../context/NoteContext'
+import { useNavigate } from "react-router-dom";
 
 export default function Home(){
+    
     return <div>
         <Navbar></Navbar>
-        <div className='temp'>
-        <div className="main-container">
-        <div className='image-container'>
-            <h1>image comes here</h1>
-        </div>
-        <div className='primary-description'>
-            <p> name of the user</p>
-            <p>something..</p>
-            <p>something...</p>
-        </div>
-      </div>
-      <div className='secondary-description'>
-        <p>something more....</p>
-        <p>something more.....</p>
-      </div>
-    </div>
+        <p>This is home section and about </p>
     </div>
 }
