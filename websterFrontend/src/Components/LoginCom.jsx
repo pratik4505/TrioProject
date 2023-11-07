@@ -13,10 +13,20 @@ export default function LoginComponent(){
   const a=React.useContext(NoteContext)
   
   const nav=useNavigate()
-    function handle(){
-      
+   function handle(){
+   /* try{
+      let response=await LoginAPI(formData)
+      if(response==="ok"){
       nav("/")
-    }
+      }else{
+        console.log(response)
+      }
+    }catch(error){
+      console.log(`${error}`)
+    } */
+    a.update();
+      nav("/")
+  }
     const [formData,setFormData]=React.useState({
         email:"",
         password:"",
