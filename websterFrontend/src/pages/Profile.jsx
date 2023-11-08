@@ -23,7 +23,30 @@ export default function Profile(){
       nav("/Login")
     }
     check()
-    
+    /*
+    const[profileData,setprofileData]=React.useState([])
+    React.useEffect(()=>{
+       fetch("http://localhost:3000/getAllUser",{
+        method:"GET"
+      })
+      
+      .then((res)=> res.json())
+      .then((data)=>{
+        console.log("atleat no error")
+        console.log(data.allUser)
+        setprofileData(data.allUser)
+      })
+    },[])
+    console.log(profileData)
+    console.log(profileData[0].name)
+    let user_name=profileData[token].userName
+    let summary=profileData[token].summary
+    let industry=profileData[token].industry
+    let experience=profileData[token].experience
+    let education=profileData[token].education
+    let skills=profileData[token].skills
+
+   */
     return (
       <div className="full-body">
       <Navbar></Navbar>
