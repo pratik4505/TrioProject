@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar"
 import { useNavigate } from "react-router-dom";
 import NoteContext from '../context/NoteContext'
 export default function Register(){
-    const nav=useNavigate()
+   /* const nav=useNavigate()
     const a=React.useContext(NoteContext)
     
     console.log(a.nameState)
@@ -16,7 +16,7 @@ export default function Register(){
       nav("/Login")
     }
     check()
-
+*/
     return (
         <div>
             <RegisterComponent />

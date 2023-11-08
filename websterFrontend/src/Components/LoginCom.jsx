@@ -41,7 +41,7 @@ export default function LoginComponent(){
     }
     console.log(formData)
     return(
-        <div className="container">
+        <div className="main-container">
           
           <div className="form-box">
 
