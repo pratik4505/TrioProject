@@ -6,6 +6,7 @@ const HttpError = require('./models/http-error');
 const googleAuth=require('./routes/auth/google_auth');
 const authRoutes = require('./routes/auth/auth');
 const postRoutes=require('./routes/posts/post');
+const commentRoutes=require('./routes/posts/comments');
 const app =express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -67,6 +68,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(googleAuth);
 app.use(authRoutes);
 app.use(postRoutes);
+app.use(commentRoutes);
 
 
 

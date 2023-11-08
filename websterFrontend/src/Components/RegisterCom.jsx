@@ -1,17 +1,25 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
 import { RegisterAPI } from "../api/auth"
-
+import NoteContext from '../context/NoteContext'
 import '../sass/styling.scss'
 export default function RegisterComponent(){
     const nav=useNavigate()
-    function handle(){
-        //actual function to come here
-        //just temp for checking
-      if(formData.email!="" || formData.username!=""){
-        nav("/")}else{
-        console.log(err)
+    const a=React.useContext(NoteContext)
+     function handle(){
+      /*try{
+        let response=await RegisterAPI(formData)
+        if(response==="ok"){
+        //nav("/OTP")
+        }else{
+          console.log(response)
         }
+      }catch(error){
+        console.log(`${error}`)
+      } 
+      */
+      a.update()
+      nav("/")
     }
     const [formData,setFormData]=React.useState({
         username:"",
