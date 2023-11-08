@@ -11,6 +11,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
+const Profile=require("./models/user")
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -65,6 +67,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(googleAuth);
 app.use(authRoutes);
 app.use(postRoutes);
+
 
 
 app.use((req, res, next) => {
