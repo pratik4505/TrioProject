@@ -147,7 +147,9 @@ exports.getPost=async (req,res)=>{
             profileImageUrl: imageUrl || undefined, // Alias the imageUrl field to profileImageUrl
             name: name,
             industry: industry,
-            createdAt: post.createdAt
+            createdAt: post.createdAt,
+            content: post.content,
+            _id:post._id
           };
           
         res.status(200).json(responseData);

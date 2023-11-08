@@ -9,6 +9,6 @@ const isAuth=require('../../controllers/auth/is-auth');
 
 router.post('/addPost',isAuth,postController.addPost);
 
-router.get('/getPost/:postId',postController.getPost);
+router.get('/getPost/:postId',isAuth,postController.getPost);
 
 module.exports = router;

@@ -29,7 +29,7 @@ router.post(
 
 router.post("/login", authController.login);
 
-router.post("/emailVerify",authController.verify)
+router.post("/emailVerify",authController.verify);
 
 module.exports = router;
 
