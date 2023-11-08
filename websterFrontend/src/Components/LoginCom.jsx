@@ -44,8 +44,8 @@ export default function LoginComponent(){
         <div className="container">
           
           <div className="form-box">
-
-            <h1>Log in</h1>   
+          <img className="login-lync-logo" src="/Lyncwoback.png"></img>
+            
 
             <div className="input-group">
               

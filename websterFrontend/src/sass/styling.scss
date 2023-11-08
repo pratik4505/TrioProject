@@ -5,11 +5,19 @@ body{
     box-sizing: border-box;
 }
 
+.login-lync-logo{
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 15px;
+}
+
 .container{
     width: 100%;
     height: 100vh;
-    // background-image: linear-gradient(#9F8FFF, white);
-    background-image: url(/clouds.jpg);
+    // background-image: repeating-radial-gradient(#9F8FFF, white) ;
+    background-image: url(/Lyncing.png);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -86,7 +94,7 @@ input{
 }
 
 .input-group p a:hover{
-    color: #9F8FFF;
+    color: #FFBD59;
 }
 
 .submit-container{
@@ -98,8 +106,8 @@ input{
 
 .submit-container .submit{
     flex-basis: 48%;
-    background: #9F8FFF;
-    color: #fff;
+    background: #fff;
+    color: #9F8FFF;
     border-radius: 20px;
     border: 0;
     outline: 0;
@@ -113,8 +121,8 @@ input{
 
 .submit-container .submitG{
     flex-basis: 48%;
-    background: #9F8FFF;
-    color: #fff;
+    background: #fff;
+    color: #9F8FFF;
     border-radius: 20px;
     border: 0;
     outline: 0;
@@ -128,13 +136,13 @@ input{
 }
 
 .submit-container .submit:hover{
-    background: #fff;
-    color: #9F8FFF ;
+    background: #FFBD59;
+    color: #fff ;
 }
 
 .submit-container .submitG:hover{
-    background: #fff;
-    color: #9F8FFF ;
+    background: #FFBD59;
+    color: #fff ;
 }
 
 .register{
@@ -149,7 +157,7 @@ input{
  }
 
  .register a:hover{
-    color: #9F8FFF;
+    color: #FFBD59;
  }
 
 
