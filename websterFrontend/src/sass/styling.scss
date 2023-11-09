@@ -13,13 +13,13 @@ body{
     bottom: 15px;
 }
 
-.container{
+.main-container{
     width: 100%;
     height: 100vh;
-    // background-image: repeating-radial-gradient(#9F8FFF, white) ;
-    background-image: url(/Lyncing.png);
-    background-position: center;
-    background-size: cover;
+     background-image: repeating-radial-gradient(#9F8FFF, white) ;
+   background-image: url(/Lyncing.png);
+   background-position: center;
+   background-size: cover;
     position: relative;
 }
 
@@ -37,7 +37,6 @@ body{
     text-align: center;
     border-radius: 20px;
 }
-
 .form-box h1{
     font-size: 50px;
     margin-bottom: 60px;
@@ -101,7 +100,7 @@ input{
     width: 100%;
     display: flex;
     justify-content: space-around;
-
+     
 }
 
 .submit-container .submit{
@@ -120,6 +119,10 @@ input{
 }
 
 .submit-container .submitG{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     flex-basis: 48%;
     background: #fff;
     color: #9F8FFF;
