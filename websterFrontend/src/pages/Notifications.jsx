@@ -12,7 +12,7 @@ export default function Notifications(){
        response=await (a.nameState) 
        console.log(response)
        if(response===false)
-      nav("/Login")
+      nav("/Notification")
     }
     check()
     
