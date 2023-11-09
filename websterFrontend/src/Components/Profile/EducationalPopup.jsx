@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import "../../Sass/Popup.scss"
 
 function Popup() {
-  const [School, setSchool] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate,setEndDate]=useState('')
+  const nav = useNavigate();
+  const [formdata, setFormdata] = useState({ place: '', startDate: '', endDate: '' });
   const [showPopup, setShowPopup] = useState(false);
+  
 
   const openPopup = () => {
     setShowPopup(true);
@@ -16,14 +17,24 @@ function Popup() {
   };
 
   const handleSubmit = () => {
-    console.log('Username: ' + School);
-    console.log('Start date: ' + startDate);
-    console.log('End date:' + endDate)
+    console.log('place: ' + formdata.place);
+    console.log('Start date: ' + formdata.startDate);
+    console.log('End date: ' + formdata.endDate);
+
     closePopup();
+    
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormdata((prevData) => ({
+      ...prevData,
+      [id]: value
+    }));
   };
 
   return (
-    <div >
+    <div>
       <button className="btn btn-primary" onClick={openPopup}>
         Add Education
       </button>
@@ -35,10 +46,10 @@ function Popup() {
               <label htmlFor="School">School:</label>
               <input
                 type="text"
-                id="School"
+                id="place"
                 className="form-control"
-                value={School}
-                onChange={(e) => setSchool(e.target.value)}
+                value={formdata.School}
+                onChange={handleInputChange}
                 required
               />
               <br />
@@ -47,8 +58,8 @@ function Popup() {
                 type="text"
                 id="startDate"
                 className="form-control"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={formdata.startDate}
+                onChange={handleInputChange}
                 required
               />
               <br />
@@ -57,8 +68,8 @@ function Popup() {
                 type="text"
                 id="endDate"
                 className="form-control"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={formdata.endDate}
+                onChange={handleInputChange}
                 required
               />
             </div>
@@ -78,3 +89,4 @@ function Popup() {
 }
 
 export default Popup;
+*/

@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import "../../Sass/Popup.scss"
 
 function Experience() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    startDate: '',
+    endDate: '',
+  });
+
   const [showPopup, setShowPopup] = useState(false);
 
   const openPopup = () => {
@@ -17,11 +20,19 @@ function Experience() {
   };
 
   const handleSubmit = () => {
-    console.log('Title: ' + title);
-    console.log('Description: ' + description);
-    console.log('Start Date: ' + startDate);
-    console.log('End Date: ' + endDate);
+    console.log('Title: ' + formData.title);
+    console.log('Description: ' + formData.description);
+    console.log('Start Date: ' + formData.startDate);
+    console.log('End Date: ' + formData.endDate);
     closePopup();
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
   };
 
   return (
@@ -39,8 +50,8 @@ function Experience() {
                 type="text"
                 id="title"
                 className="form-control"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={formData.title}
+                onChange={handleInputChange}
                 required
               />
               <br />
@@ -48,8 +59,8 @@ function Experience() {
               <textarea
                 id="description"
                 className="form-control"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={formData.description}
+                onChange={handleInputChange}
                 rows="3"
               />
               <br />
@@ -58,8 +69,8 @@ function Experience() {
                 type="date"
                 id="startDate"
                 className="form-control"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={formData.startDate}
+                onChange={handleInputChange}
               />
               <br />
               <label htmlFor="endDate">End Date:</label>
@@ -67,8 +78,8 @@ function Experience() {
                 type="date"
                 id="endDate"
                 className="form-control"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={formData.endDate}
+                onChange={handleInputChange}
               />
             </div>
             <div className="card-footer">

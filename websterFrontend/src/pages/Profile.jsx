@@ -8,7 +8,7 @@ import SkillContainer from '../Components/Profile/SkillContainer';
 import "../sass/ProfileDesign.scss"
 export default function Profile(){
 
-    const nav=useNavigate()
+    /*const nav=useNavigate()
     const a=React.useContext(NoteContext)
     console.log(a.nameState)
     function handle(){
@@ -23,8 +23,81 @@ export default function Profile(){
       nav("/Login")
     }
     check()
+    
+    */
+
+    const data=
+    {
+    userName:"Ayush Kumar",
+    summary:"Web Developer",
+    industry:"Software",
+    imageUrl:"",
+    experience:[{
+        title:"Web developer",
+        description:"developes Web",
+        startDate:"14/07/23",
+        endDate:"up till now"
+    },
+    {
+        title:"Web developer",
+        description:"developes Web",
+        startDate:"04/07/19",
+        endDate:"13/07/23"
+    }
+    ],
+    education:[
+    {
+        place:"MNNIT",
+        startDate:"4/11/22",
+        endDate:"6/6/26"
+    },
+    {
+        place:"DPS",
+        startDate:"4/11/10",
+        endDate:"6/6/20"
+    }
+    ]
+}
+    
+    console.log("rendered")
+    const[profileData,setprofileData]=React.useState(data)
+    console.log(profileData)
+    const updateData=(newData)=>{
+      const newEd=[]
+      for(let i=0;i<profileData.education.length;i++){
+        const currentSquare=profileData.education[i]
+        newEd.push(currentSquare)
+      }
+      newEd.push(newData)
+      console.log(newEd)
+      
+      setprofileData(prev=>{
+        return{
+          ...prev,
+          education:newEd
+        }
+      })
+    }
+
+    
+    const updateData1=(newData)=>{
+      const newEx=[]
+      for(let i=0;i<profileData.experience.length;i++){
+        const currentSquare=profileData.experience[i]
+        newEx.push(currentSquare)
+      }
+      newEx.push(newData)
+      console.log(newEx)
+      
+      setprofileData(prev=>{
+        return{
+          ...prev,
+          experience:newEx
+        }
+      })
+    }
+    
     /*
-    const[profileData,setprofileData]=React.useState([])
     React.useEffect(()=>{
        fetch("http://localhost:3000/getAllUser",{
         method:"GET"
@@ -37,16 +110,15 @@ export default function Profile(){
         setprofileData(data.allUser)
       })
     },[])
-    console.log(profileData)
-    console.log(profileData[0].name)
-    let user_name=profileData[token].userName
-    let summary=profileData[token].summary
-    let industry=profileData[token].industry
-    let experience=profileData[token].experience
-    let education=profileData[token].education
-    let skills=profileData[token].skills
-
-   */
+    */
+    let user_name=profileData.userName
+    let summary=profileData.summary
+    let industry=profileData.industry
+    let experience=profileData.experience
+    console.log(profileData.education)
+    //let skills=profileData.skills
+    
+   
     return (
       <div className="full-body">
       <Navbar></Navbar>
@@ -63,8 +135,9 @@ export default function Profile(){
         </div>
       </div>
       <div className="col-md-8">
-        <h1>John Doe</h1>
-        <p>Software Developer</p>
+        <h1>{user_name}</h1>
+        <p>{summary}</p>
+        <p>{`${industry} industry`}</p>
         <p>Location: New York, NY</p>
         <p>Connections: 500+</p>
         <p>LinkedIn Member Since: 2010</p>
@@ -82,15 +155,30 @@ export default function Profile(){
     </div>
     <hr></hr>
     {/* Add more profile sections as needed */}
+    <EducationContainer    
+     education={profileData.education}
+     onDataUpdate={updateData}
+     />
+     <hr></hr>
+      <ExperienceContainer
+     experience={profileData.experience}
+     onDataUpdate={updateData1}
+     />
+     
   </div>
       </div>
-      <div>
-        <EducationContainer/>
-        </div>
+       
+     <hr></hr>
+       { /*
         <br></br>
-        <SkillContainer/>
+        <SkillContainer
+        skill={skill}
+        />
         <br></br>
-      <ExperienceContainer/>
+      <ExperienceContainer
+      experience={experience}
+      />
+    */}
   </div>
     )
 }
