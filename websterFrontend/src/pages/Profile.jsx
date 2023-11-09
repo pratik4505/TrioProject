@@ -20,7 +20,7 @@ export default function Profile(){
        response=await (a.nameState) 
        console.log(response)
        if(response===false)
-      nav("/Login")
+      nav("/Profile")
     }
     check()
     

@@ -12,7 +12,7 @@ export default function Jobs(){
        response=await (a.nameState) 
        console.log(response)
        if(response===false)
-      nav("/Login")
+      nav("/Jobs")
     }
     check()
     
