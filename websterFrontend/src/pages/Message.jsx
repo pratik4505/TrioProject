@@ -13,7 +13,7 @@ export default function Message(){
        response=await (a.nameState) 
        console.log(response)
        if(response===false)
-       nav("/Login")
+      nav("/Message")
     }
     check()
     
