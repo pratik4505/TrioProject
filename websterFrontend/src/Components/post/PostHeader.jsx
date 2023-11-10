@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import './postHeader.css'; 
+import './postHeader.scss'; 
 const baseUrl = 'http://localhost:3000';
 const PostHeader = (props) => {
   return (

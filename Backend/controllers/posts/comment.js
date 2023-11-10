@@ -22,7 +22,7 @@ exports.getComments=async (req, res) => {
     res.status(200).json({ comments: commentsData });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'An error occurred while fetching comments' });
+    res.status(500).json({ message: error.message });
   }
 };
 

@@ -31,6 +31,7 @@ passport.use(
   )
 );
 
+
 router.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -42,7 +43,7 @@ router.get(
 router.get(
   "/callback",
   passport.authenticate("google", {
-    failureRedirect: "/login",
+    failureRedirect: "http://localhost:5173/login",
     session: false,
   }),
   async function (req, res) {
@@ -64,16 +65,25 @@ router.get(
       throw err;
     }
 
+
+    const expirationTime = 2 * 60 * 60; 
     const token = jwt.sign(
       { email: userData.email, userId: user._id },
-      process.env.SECRET_KEY
+      process.env.SECRET_KEY,
+      { expiresIn: expirationTime }
     ); 
 
-    res.json({ token });
+   // res.status(200).json({ token:token,userId:user._id });
 
-    res.redirect("/home");
+    res.redirect(`http://localhost:5173/?token=${token}&userId=${user._id}`);
 
-    // https://stackoverflow.com/questions/47007811/how-can-i-make-passportjs-google-login-oauth-work-with-jwt-instead-of-creating-s
+    // app.get('/setCookie', (req, res) => {
+    //   res.cookie('myCookie', 'cookieValue', { maxAge: 900000, httpOnly: true });
+    
+    //   res.send('Cookie set');
+    // });
+    
+    
   }
 );
 

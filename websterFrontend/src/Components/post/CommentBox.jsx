@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./commentBox.css";
+import "./commentBox.scss";
 
 import Comment from "./Comment";
-import getJwtTokenFromCookie from "../../../utils/cookieData";
+import getJwtTokenFromCookie from "../../utils/cookieData";
 const jwtToken = getJwtTokenFromCookie();
 
 const CommentBox = (props) => {
   const [newComment, setNewComment] = useState("");
   const [commentsData, setCommentsData] = useState([]);
 
-  const fetchComments = useCallback(async () => {
+  const fetchComments = async () => {
     try {
+     
       const response = await fetch(
         `http://localhost:3000/post/getComments/${props.postId}`,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
+            "Authorization": `Bearer ${jwtToken}`,
           },
         }
       );
@@ -27,11 +28,11 @@ const CommentBox = (props) => {
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
-  }, []);
+  };
 
   useEffect(() => {
     fetchComments();
-  }, [fetchComments]);
+  }, []);
 
   const newCommentHandler = async () => {
     try {

@@ -11,4 +11,6 @@ router.post('/addPost',isAuth,postController.addPost);
 
 router.get('/getPost/:postId',isAuth,postController.getPost);
 
+router.get('/getFeeds',isAuth,postController.getFeeds);
+
 module.exports = router;

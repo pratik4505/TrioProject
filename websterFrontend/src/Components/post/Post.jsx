@@ -1,5 +1,5 @@
 import React from "react";
-import "./post.css";
+import "./post.scss";
 import PostHeader from "./PostHeader";
 import CommentBox from "./CommentBox";
 import LikeBox from "./LikeBox";

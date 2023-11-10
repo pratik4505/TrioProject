@@ -12,6 +12,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const jobRoutes = require('./routes/job/jobRoutes');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -43,7 +45,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter }).fields([
 ]);
 
 
-
+app.use(cookieParser());
 
 app.use(cors());
 //app.use(express.urlencoded({extended:true}));
@@ -67,6 +69,7 @@ app.use(googleAuth);
 app.use(authRoutes);
 app.use(postRoutes);
 app.use(commentRoutes);
+app.use(jobRoutes);
 
 
 app.use((req, res, next) => {

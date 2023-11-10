@@ -160,3 +160,98 @@ exports.getPost=async (req,res)=>{
     
 
 };
+
+exports.getFeeds=async (req, res) => {
+  try {
+    const { limit, afterDate } = req.query;
+    const userId = req.userId;
+
+    const loggedInUser = await User.findById(userId).select('connections companyFollows likedPosts');
+
+    if (!loggedInUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+   
+    const filter = {
+      $or: [
+        { userId: { $in: loggedInUser.connections } },
+        { companyId: { $in: loggedInUser.companyFollows } },
+      ],
+      createdAt: { $gt: new Date(afterDate) },
+    };
+
+    
+    const posts = await Post.find(filter)
+      .sort({ createdAt: 1 })
+      .limit(Number(limit));
+
+    
+    const responseData = [];
+
+    
+    for (const post of posts) {
+      let ownerIdData = null;
+      let imageUrl = undefined;
+      let industry = undefined;
+      let name = undefined;
+
+      if (post.type === 'user' && post.userId) {
+        const user = await User.findById(post.userId).select('_id imageUrl industry userName');
+        if (user) {
+          ownerIdData = user._id;
+          imageUrl = user.imageUrl;
+          industry = user.industry;
+          name = user.userName;
+        }
+      } else if (post.type === 'company' && post.companyId) {
+        const company = await Company.findById(post.companyId).select('_id companyLogo industry name');
+        if (company) {
+          ownerIdData = company._id;
+          imageUrl = company.companyLogo;
+          industry = company.industry;
+          name = company.name;
+        }
+      }
+
+      const likeCount = post.likedBy.length;
+      const commentCount = post.comments.length;
+
+      let likeType = undefined;
+      let hasLiked = false;
+
+      
+        hasLiked = loggedInUser.likedPosts.some((likedPost) => {
+          if (likedPost.postId.toString() === post._id.toString()) {
+            likeType = likedPost.likeType;
+            return true;
+          }
+        });
+      
+
+      const postResponse = {
+        postImageUrl: post.imageUrl || undefined,
+        videoUrl: post.videoUrl || undefined,
+        type: post.type,
+        ownerId: ownerIdData,
+        likeCount: likeCount,
+        commentCount: commentCount,
+        hasLiked: hasLiked,
+        likeType: likeType,
+        profileImageUrl: imageUrl || undefined,
+        name: name,
+        industry: industry,
+        createdAt: post.createdAt,
+        content: post.content,
+        _id: post._id,
+      };
+
+      responseData.push(postResponse);
+    }
+
+    res.status(200).json(responseData);
+  } catch (error) {
+    console.error('Error fetching feed:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}

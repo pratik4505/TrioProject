@@ -1,0 +1,30 @@
+.jobs {
+    display: flex;
+    height: 100vh;
+}
+
+.jobs-search {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.jobs-search input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.jobs-search button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.jobs-details {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Additional styles for better user experience */
+.jobs-search input:hover, .jobs-search button:hover {
+    background-color: #f5f5f5;
+}

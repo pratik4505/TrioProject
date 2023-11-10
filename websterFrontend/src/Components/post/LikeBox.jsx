@@ -1,5 +1,5 @@
 import React from "react";
-import "./likeBox.css";
+import "./likeBox.scss";
 const LikeBox=()=>{
 
 

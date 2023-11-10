@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Comment.css';
+import './Comment.scss';
 
-import getJwtTokenFromCookie from "../../../utils/cookieData";
+import getJwtTokenFromCookie from "../../utils/cookieData";
 const jwtToken = getJwtTokenFromCookie();
 
 const Comment = (props) => {
@@ -11,11 +11,13 @@ const Comment = (props) => {
 
   const handleAddReply = async () => {
     try {
+      
+
       const response = await fetch("http://localhost:3000/post/comment/addReply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${jwtToken}`,
+          "Authorization": `Bearer ${jwtToken}`,
         },
         body: JSON.stringify({
           content: replyText,

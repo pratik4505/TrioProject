@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
 const jobOpeningSchema = new mongoose.Schema({
   jobTitle: {
     type: String,
@@ -12,8 +12,15 @@ const jobOpeningSchema = new mongoose.Schema({
     ref: 'Company', // Reference to the Company model
     required: true
   },
+  companyName: String,
   skillsRequired: [String], // Array of skills required
-  description: String
+  description: String,
+  imageUrl: String,
+  appliedBy:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', // Reference to the Company model
+    required: true
+  }]
 });
 
 const JobOpening = mongoose.model('JobOpening', jobOpeningSchema);

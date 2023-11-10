@@ -60,17 +60,17 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
-  experience: {
+  experience: [{
     title: String,
     description: String,
     startDate: Date,
     endDate: Date
-  },
-  education: {
+  }],
+  education:[ {
     place: String,
     startDate: Date,
     endDate: Date
-  },
+  }],
   skills: [{
     skill: String,
     endorses: [{
