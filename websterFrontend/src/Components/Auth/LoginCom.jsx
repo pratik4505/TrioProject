@@ -62,7 +62,8 @@ export default function LoginComponent() {
   return (
     <div className="container">
       <div className="form-box">
-        <h1>Log in</h1>
+      <img className="login-lync-logo" src="/Lyncwoback.png"></img>
+        
         <div className="input-group">
           <div className="input-field">
             <AiOutlineUser className="react-icons" />
@@ -84,9 +85,9 @@ export default function LoginComponent() {
               onChange={change}
             />
           </div>
-          <p>
-            Lost password <a href="#">Click Here!</a>
-          </p>
+
+          <p>Forgot password? <a href="#">Click Here!</a></p>
+
           <div className="submit-container">
             {loading ? (
               <div className="loading-spinner">Loading...</div>
@@ -96,8 +97,8 @@ export default function LoginComponent() {
               </div>
             )}
             <div className="submitG" onClick={googleLoginHandler}>Log in with Google</div>
-           
           </div>
+
           <div className="register" >
             Don't have an account? <Link to="/Register">Register</Link>
           </div>
