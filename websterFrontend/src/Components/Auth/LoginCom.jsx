@@ -63,7 +63,7 @@ export default function LoginComponent() {
     <div className="container">
       <div className="form-box">
       <img className="login-lync-logo" src="/Lyncwoback.png"></img>
-        
+        <h1>Log in</h1>
         <div className="input-group">
           <div className="input-field">
             <AiOutlineUser className="react-icons" />
