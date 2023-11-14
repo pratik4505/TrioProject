@@ -4,6 +4,7 @@ import { RegisterAPI } from "../../api/auth"
 import NoteContext from '../../context/NoteContext'
 import '../../sass/styling.scss';
 import { AiOutlineUser } from 'react-icons/ai';
+import { CiMail } from "react-icons/ci";
 import {BsKey} from 'react-icons/bs';
 
 export default function RegisterComponent() {
@@ -53,7 +54,7 @@ export default function RegisterComponent() {
           />
           </div>
           <div className="input-field">
-            <AiOutlineUser className="react-icons-loginPG" />
+            <CiMail className="react-icons-loginPG"/>
             <input
             type="text"
             name="email"
@@ -82,7 +83,6 @@ export default function RegisterComponent() {
             </div>
           )}
           </div>
-          
         </div>
       </div>
       {responseMessage && (
