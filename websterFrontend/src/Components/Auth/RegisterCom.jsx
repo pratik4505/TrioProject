@@ -39,30 +39,31 @@ export default function RegisterComponent() {
   return (
     <div className="container">
       <div className="form-box">
-        <h1>Log in</h1>
+        <img className="login-lync-logo" src="/Lyncwoback.png"></img>
+        <h1>Sign up</h1>
         <div className="input-group">
           <div className="input-field">
-            <AiOutlineUser className="react-icons" />
+            <AiOutlineUser className="react-icons-loginPG" />
             <input
             type="text"
             name="username"
             value={userName}
-            placeholder="Enter Your Username"
+            placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
           />
           </div>
           <div className="input-field">
-            <AiOutlineUser className="react-icons" />
+            <AiOutlineUser className="react-icons-loginPG" />
             <input
             type="text"
             name="email"
             value={email}
-            placeholder="Enter Your Email"
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
           </div>
           <div className="input-field">
-            <BsKey className="react-icons" />
+            <BsKey className="react-icons-loginPG" />
             <input
             type="password"
             name="password"

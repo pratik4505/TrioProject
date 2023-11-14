@@ -66,7 +66,7 @@ export default function LoginComponent() {
         <h1>Log in</h1>
         <div className="input-group">
           <div className="input-field">
-            <AiOutlineUser className="react-icons" />
+            <AiOutlineUser className="react-icons-loginPG" />
             <input
               type="text"
               name="email"
@@ -76,7 +76,7 @@ export default function LoginComponent() {
             />
           </div>
           <div className="input-field">
-            <BsKey className="react-icons" />
+            <BsKey className="react-icons-loginPG" />
             <input
               type="password"
               name="password"

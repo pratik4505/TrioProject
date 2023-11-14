@@ -63,7 +63,7 @@ body{
     border-radius: 3px;
     display: flex;
     align-items: center;
-    
+    width: 100%;
 }
 
 input{
@@ -73,6 +73,11 @@ input{
     outline: 0;
     padding: 18px 15px;
     font-size: 15px;
+}
+
+.react-icons-loginPG{
+    margin: 0px 20px;
+    font-size: 25px;
 }
 
 .input-field .react-icons{
