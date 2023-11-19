@@ -3,10 +3,9 @@ const Post = require('../../models/post');
 const User = require('../../models/user');
 const Company = require('../../models/company');
 
-// Define storage locations for images and videos
 
 
-// Endpoint for adding a post
+
 exports.addPost=async (req, res) => {
   try {
     const { type, ownerId, content } = req.body;
@@ -81,16 +80,16 @@ exports.getPost=async (req,res)=>{
         // Initialize variables to store user or company details
         let ownerIdData = null;
         let imageUrl = undefined;
-        let industry = undefined;
+        let summary = undefined;
         let name = undefined;
     
         if (post.type === 'user' && post.userId) {
           // If the post type is 'user', fetch user details
-          const user = await User.findById(post.userId).select('_id imageUrl industry userName');
+          const user = await User.findById(post.userId).select('_id imageUrl summary userName');
           if (user) {
             ownerIdData = user._id;
             imageUrl = user.imageUrl;
-            industry = user.industry;
+            summary = user.summary;
             name = user.userName;
           }
         } else if (post.type === 'company' && post.companyId) {
@@ -99,36 +98,35 @@ exports.getPost=async (req,res)=>{
           if (company) {
             ownerIdData = company._id;
             imageUrl = company.companyLogo;
-            industry = company.industry;
+            summary = company.industry;
             name = company.name;
           }
         }
     
         // Calculate the like count for the post
-        const likeCount = post.likedBy.length;
+        let likeCount = 0;
+        if(post.likedBy)
+        likeCount = post.likedBy.size;
     
-        // Calculate the comment count for the post
+       
         const commentCount = post.comments.length;
     
-        const user = await User.findById(loggedInUserId);
-
-        
+        const user = await User.findById(loggedInUserId).select('likedPosts');
         
 
         
         let likeType = undefined;
-
         let hasLiked=false;
-        
-        if(user){
-            hasLiked = user.likedPosts.some((likedPost) => {
-                if(likedPost.postId.toString() === postId){
-                    likeType=likedPost.likeType;
-                    return true;
-                }
-                
-            });
+  
+        if(User.likedPosts)
+       hasLiked = User.likedPosts.has(postId.toString())
+
+       
+
+        if(hasLiked) {
+         likeType =user.likedPosts.get(postId); 
         }
+       
 
         
         
@@ -146,7 +144,7 @@ exports.getPost=async (req,res)=>{
             likeType: likeType,
             profileImageUrl: imageUrl || undefined, // Alias the imageUrl field to profileImageUrl
             name: name,
-            industry: industry,
+            summary: summary,
             createdAt: post.createdAt,
             content: post.content,
             _id:post._id
@@ -160,3 +158,219 @@ exports.getPost=async (req,res)=>{
     
 
 };
+
+exports.getFeeds=async (req, res) => {
+  try {
+    const { limit, afterDate } = req.query;
+    const userId = req.userId;
+
+    const loggedInUser = await User.findById(userId).select('connections companyFollows likedPosts');
+
+    if (!loggedInUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+   
+    // const filter = {
+    //   $or: [
+    //     { userId: { $in: loggedInUser.connections } },
+    //     { companyId: { $in: loggedInUser.companyFollows } },
+    //   ],
+    //   createdAt: { $lt: new Date(afterDate) },
+    // };
+
+    const filter = {
+      
+      createdAt: { $lt: new Date(afterDate) },
+    };
+
+    
+    const posts = await Post.find(filter)
+      .sort({ createdAt: -1 })
+      .limit(Number(limit));
+
+    
+    const responseData = [];
+
+    
+    for (const post of posts) {
+      let ownerIdData = null;
+      let imageUrl = undefined;
+      let summary = undefined;
+      let name = undefined;
+
+      if (post.type === 'user' && post.userId) {
+        const user = await User.findById(post.userId).select('_id imageUrl summary userName');
+        if (user) {
+          ownerIdData = user._id;
+          imageUrl = user.imageUrl;
+          summary = user.summary;
+          name = user.userName;
+        }
+      } else if (post.type === 'company' && post.companyId) {
+        const company = await Company.findById(post.companyId).select('_id companyLogo industry name');
+        if (company) {
+          ownerIdData = company._id;
+          imageUrl = company.companyLogo;
+          summary = company.industry;
+          name = company.name;
+        }
+      }
+
+
+      let likeCount = 0;
+        if(post.likedBy)
+        likeCount = post.likedBy.size;
+    
+       
+      const commentCount = post.comments.length;
+
+      let likeType = undefined;
+      let hasLiked=false;
+
+      if(loggedInUser.likedPosts)
+    {
+      hasLiked = loggedInUser.likedPosts.has(post._id.toString())
+      
+    }
+    
+
+      
+      if(hasLiked) {
+       likeType =loggedInUser.likedPosts.get(post._id); 
+      }
+
+
+     
+        
+      
+
+      const postResponse = {
+        postImageUrl: post.imageUrl || undefined,
+        videoUrl: post.videoUrl || undefined,
+        type: post.type,
+        ownerId: ownerIdData,
+        likeCount: likeCount,
+        commentCount: commentCount,
+        hasLiked: hasLiked,
+        likeType: likeType,
+        profileImageUrl: imageUrl || undefined,
+        name: name,
+        summary: summary,
+        createdAt: post.createdAt,
+        content: post.content,
+        _id: post._id,
+      };
+
+      responseData.push(postResponse);
+    }
+
+    res.status(200).json(responseData);
+  } catch (error) {
+    console.error('Error fetching feed:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+
+exports.postLike =async (req, res) =>  {
+  const { postId, likeType } = req.query;
+  const userId = req.userId; 
+
+  try {
+    
+    await User.findByIdAndUpdate(
+      userId,
+      { $set: { [`likedPosts.${postId}`]: likeType } }
+      
+    );
+
+   
+    const updatedPost = await Post.findByIdAndUpdate(
+      postId,
+      { $set: { [`likedBy.${userId}`]: likeType } }
+      
+    );
+
+    res.json(updatedPost);
+  } catch (error) {
+    console.error('Error updating like:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+exports.postUnlike=async (req, res) => {
+ 
+  const  postId  = req.params.postId;
+  const userId = req.userId; 
+  
+  try {
+    
+    await User.findByIdAndUpdate(
+      userId,
+      { $unset: { [`likedPosts.${postId}`]: 1 } }
+    );
+
+   
+    await Post.findByIdAndUpdate(
+      postId,
+      { $unset: { [`likedBy.${userId}`]: 1 } }
+    );
+
+    res.status(204).json({message:"post unliked successfully"}); 
+  } catch (error) {
+    console.error('Error updating unlike:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+}
+
+exports.likesByUser = async (req, res)=> {
+  const { postId, skip, limit } = req.query;
+
+  try {
+   
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    
+    const likedByMap = post.likedBy;
+
+    
+    const likedByArray = Array.from(likedByMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+
+   
+    const slicedLikedByArray = likedByArray.slice(skip, skip + limit);
+
+   
+    const data = [];
+
+    
+    for (const [userId, likeType] of slicedLikedByArray) {
+      
+      const user = await User.findById(userId).select('userName summary imageUrl');
+
+      if (user) {
+        // Add user details to the data array
+        data.push({
+          id: userId,
+          likeType,
+          userName: user.userName,
+          summary: user.summary,
+          imageUrl: user.imageUrl
+        });
+      }
+    }
+
+    
+    const hasMore = likedByArray.length > skip + limit;
+
+    res.status(200).json({ data, hasMore });
+  } catch (error) {
+    console.error('Error fetching likes by user data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

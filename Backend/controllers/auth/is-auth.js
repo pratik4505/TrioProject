@@ -2,19 +2,27 @@ const jwt = require('jsonwebtoken');
 const HttpError = require('../../models/http-error');
 
 module.exports = (req, res, next) => {
-  // const authHeader = req.get('Authorization');
+  //const authHeader = req.get('Authorization');
+  const token = req.cookies.token;
+  
+  console.log(token,"hello");
   // if (!authHeader) {
   //   throw new HttpError('Not authenticated.',401);
     
   // }
   // const token = authHeader.split(' ')[1];
-  // let decodedToken= jwt.verify(token, process.env.SECRET_KEY);
+  if (!token) {
+      throw new HttpError('Not authenticated.',401);
+      
+    }
+
+  let decodedToken= jwt.verify(token, process.env.SECRET_KEY);
   
-  // if (!decodedToken) {
-  //   throw new HttpError('Not authenticated.',401);
-  // }
-  // req.userId = decodedToken.userId;
-  req.userId='6544f83b0c2edb2e076f6ab3';
+  if (!decodedToken) {
+    throw new HttpError('Not authenticated.',401);
+  }
+  req.userId = decodedToken.userId;
+  
   next();
 };
 

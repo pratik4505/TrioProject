@@ -7,24 +7,36 @@ const googleAuth=require('./routes/auth/google_auth');
 const authRoutes = require('./routes/auth/auth');
 const postRoutes=require('./routes/posts/post');
 const commentRoutes=require('./routes/posts/comments');
+const userRoutes=require('./routes/users/profileRoutes');
+const messageRoutes=require('./routes/message/messageRoutes');
 const app =express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
+
 const multer = require('multer');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const jobRoutes = require('./routes/job/jobRoutes');
+const helmet = require('helmet');
+const fs = require('fs');
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (file.fieldname === 'image') {
-      cb(null, path.join(__dirname, 'public', 'images'));
+     
+      cb(null, './public/images/');
     } else if (file.fieldname === 'video') {
-      cb(null, path.join(__dirname, 'public', 'videos'));
+      
+      cb(null, './public/videos/');
     }
   },
   filename: (req, file, cb) => {
-    cb(null, new Date().toISOString() + '-' + file.originalname);
+    cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
   }
 });
+
 
 const fileFilter = (req, file, cb) => {
   if (
@@ -38,35 +50,50 @@ const fileFilter = (req, file, cb) => {
 };
 
 const upload = multer({ storage: storage, fileFilter: fileFilter }).fields([
-  { name: 'image', maxCount: 1 }, // Max one image file
-  { name: 'video', maxCount: 1 }, // Max one video file
+  { name: 'image', maxCount: 1 }, 
+  { name: 'video', maxCount: 1 }, 
 ]);
 
 
+app.use(helmet());
+app.use((req, res, next) => {
+ 
+  
+  res.setHeader('Access-Control-Allow-Origin', req.get('Origin')); 
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+  
+  next();
+});
 
 
-app.use(cors());
-//app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
+
 app.use(bodyParser.json());
 
+
+
+
+//app.use(express.urlencoded({extended:true}));
+
+
 app.use(upload);
-app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 
-// app.use((req,res,next)=>{
-//     //these just set headers , do not send response
-//     res.setHeader('Access-Control-Allow-Origin','*');
-//     res.setHeader('Access-Control-Allow-Origin','GET,POST,PUT,DELETE,PATCH');
-//     res.setHeader('Access-Control-Allow-Origin','Content-Type, Authorization ');
-//     next();
-// });
 
 
+
+
+app.use(userRoutes)
 app.use(googleAuth);
 app.use(authRoutes);
 app.use(postRoutes);
 app.use(commentRoutes);
+app.use(jobRoutes);
+app.use(messageRoutes)
 
 
 app.use((req, res, next) => {
@@ -89,11 +116,21 @@ app.use((req, res, next) => {
 
   });
 
+
+
   mongoose
   .connect(
     process.env.DATABASE_URI
   )
   .then(result => {
-    app.listen(3000);
+     const server=app.listen(3000);
+     const socketIo= require('./socket');
+     const io=socketIo.init(server);
+     socketIo.runIO(io);
+    
+    
   })
   .catch(err => console.log(err));
+
+  
+

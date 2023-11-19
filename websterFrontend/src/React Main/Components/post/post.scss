@@ -1,0 +1,83 @@
+/* post.scss */
+.post-container {
+  border-radius: 10px;
+  padding: 20px;
+ 
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  /* Ensure overflow is hidden */
+}
+
+.profile-image {
+  width: 50px; /* Slightly increased profile image size */
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px; /* Increased margin for better spacing */
+}
+
+.name {
+  font-weight: bold;
+  font-size: 20px; /* Increased font size for name */
+}
+
+.post-content {
+  margin-top: 15px;
+  font-size: 18px;
+  word-wrap: break-word; /* Added property for handling long words */
+}
+.post-image,
+/* post.scss */
+
+.post-video {
+  margin-top: 15px;
+  margin-bottom: 15px; /* Added margin-bottom to create space between video and like-comment div */
+  width: 100%;
+  max-height: 300px; /* Adjusted max-height for better control */
+  object-fit: cover;
+}
+
+/* Rest of the existing styles remain unchanged */
+
+.like-comment {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-button,
+.comment-button {
+  padding: 8px 15px; /* Increased padding for better button size */
+  border-radius: 8px; /* Slightly rounded corners for buttons */
+  cursor: pointer;
+}
+
+.like-button.liked {
+  background-color: #f44336;
+}
+
+.post-date {
+  margin-top: 15px;
+  color: #999;
+  font-size: 14px; /* Increased font size for date */
+}
+
+/* Hover effect */
+.like-button:hover,
+.comment-button:hover {
+  background-color: #ddd;
+}
+
+/* complete_post.scss */
+
+.complete_post {
+  display:flex;
+  flex-direction: column;
+  max-width: 40%;
+  margin:auto;
+  margin-top : 4rem;
+  margin-bottom : 4rem;
+  min-width: 300px;
+}
+

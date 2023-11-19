@@ -21,7 +21,10 @@ const commentSchema = new Schema(
           ref: "User",
         },
         content: { type: String },
-        createdAt: String
+        createdAt: {
+          type: Date,
+          default: Date.now,
+        }
       },
     ],
   },

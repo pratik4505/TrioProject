@@ -19,12 +19,14 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Company'
   },
-  likedBy: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  ],
+  likedBy:{
+    type: Map,
+    of: {
+      type: String,
+      enum: ["thumbsup", "congo", "mindblowing", "heart"],
+      
+    },
+  },
   imageUrl: {
     type: String
   },

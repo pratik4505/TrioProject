@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const companySchema = new mongoose.Schema({
     owner: {
         type: Schema.Types.ObjectId,
-        ref: 'User', // Reference to the User model
+        ref: 'User', 
         required: true
       },
   followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
@@ -15,19 +15,27 @@ const companySchema = new mongoose.Schema({
   employeeNo: Number,
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
   location: String,
-  companyLogo: String, // Assuming the company logo is a URL to an image
-  product: {
-    title: String,
-    description: String,
-    price: Number,
-    productImage: String // URL to the product image
+  companyLogo: String, 
+  products: {
+    type: Map,
+    of: {
+      title: String,
+      description: String,
+      price: Number,
+      productImage: String,
+    },
   },
-  service: {
-    title: String,
-    description: String,
-    price: Number,
-    serviceImage: String // URL to the service image
-  }
+
+  services: {
+    type: Map,
+    of: {
+      title: String,
+      description: String,
+      price: Number,
+      serviceImage: String,
+    },
+  },
+  
 });
 
 const Company = mongoose.model('Company', companySchema);
