@@ -80,8 +80,12 @@
 
 .reply-input button {
   border: none;
-  background-color: #4285f4;
-  color: #fff;
+  background-color: #9F8FFF;
+  color: black;
   border-radius: 4px;
   cursor: pointer;
+}
+.reply-input button:hover{
+  background-color: #ddd; 
+  transition: background-color 0.3s ease;
 }

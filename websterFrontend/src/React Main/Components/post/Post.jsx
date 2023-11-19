@@ -3,6 +3,10 @@ import "./post.scss";
 import PostHeader from "./PostHeader";
 import CommentBox from "./CommentBox";
 import LikeBox from "./LikeBox";
+import { FaRegThumbsUp } from "react-icons/fa";
+import { FaHandsClapping } from "react-icons/fa6";
+import { FaLightbulb } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import GlobalContext from "../../context/GlobalContext";
 const baseUrl = "http://localhost:3000";
 
@@ -126,60 +130,59 @@ const Post = (props) => {
           <div className="like-comment">
             <button
               id="like"
-              className="comment-button"
+              className="btn comment-button show-likes-btn"
               onClick={bottomHandler}
             >
-              {`Show Likes ( ${postData.likeCount})`}
+              {`Likes (${postData.likeCount})`}
             </button>
 
             {!postData.hasLiked && (
               <div className="Likes">
                 <button
-                  className="comment-button"
+                  className="comment-button emoji-btn"
                   onClick={likeHandler}
                   id="thumbsup"
                 >
-                  ThumbsUp
+                  <FaRegThumbsUp />
                 </button>
                 <button
-                  className="comment-button"
+                  className="comment-button emoji-btn"
                   onClick={likeHandler}
                   id="congo"
                 >
-                  Congr
+                  <FaHandsClapping />
                 </button>
                 <button
-                  className="comment-button"
+                  className="comment-button emoji-btn"
                   onClick={likeHandler}
                   id="mindblowing"
                 >
-                  Blowing
+                  <FaLightbulb />
                 </button>
                 <button
-                  className="comment-button"
+                  className="comment-button emoji-btn"
                   onClick={likeHandler}
                   id="heart"
                 >
-                  Heart
+                 <FaHeart />
                 </button>
               </div>
             )}
 
             {postData.hasLiked && (
-              <button className="comment-button" onClick={unlikeHandler}>
+              <button className="comment-button Unlike-btn" onClick={unlikeHandler}>
                 Unlike
               </button>
             )}
 
             <button
-              className="comment-button"
+              className="comment-button btn comment-btn"
               id="comment"
               onClick={bottomHandler}
             >
               Comment ({postData.commentCount})
             </button>
           </div>
-
           <div className="post-date">{formatDate(postData.createdAt)}</div>
         </div>
       </div>

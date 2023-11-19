@@ -13,8 +13,6 @@ const Comment = (props) => {
 
   const handleAddReply = async () => {
     try {
-      
-
       const response = await fetch("http://localhost:3000/post/comment/addReply", {
         method: "POST",
         credentials: 'include',
@@ -47,7 +45,6 @@ const Comment = (props) => {
 
   return (
     <div className="comment">
-
       <div className="comment-content">
         <div className="commenter-name">{props.commentData.commentBy}</div>
         <div className="comment-text">{props.commentData.content}</div>
@@ -77,7 +74,7 @@ const Comment = (props) => {
           value={replyText}
           onChange={(e) => setReplyText(e.target.value)}
         />
-        <button onClick={handleAddReply}>Reply</button>
+        <button onClick={handleAddReply} className='btn-reply'>Reply</button>
       </div>
     </div>
   );
@@ -102,3 +99,61 @@ export default Comment;
 
 
 
+// import React, { useState } from 'react';
+// import './Comment.css';
+
+// const Comment = ({ commentBy,commentById,content,replies,createdAt }) => {
+//   const [isReplying, setIsReplying] = useState(false);
+//   const [replyContent, setReplyContent] = useState('');
+
+//   const handleReplyClick = () => {
+//     setIsReplying((value)=>{return !value});
+//   };
+
+//   const handleReplyChange = (e) => {
+//     setReplyContent(e.target.value);
+//   };
+
+//   const handleReplySubmit = () => {
+//     // Handle the reply submission here (you can send the replyContent to your API or state management)
+//     // You may want to clear the reply field and update the UI as needed
+//     setIsReplying(false);
+//     setReplyContent('');
+//   };
+
+
+
+//   return (
+//     <div className="comment">
+
+//       <div className="comment-info">
+//         <span className="commenter-name">{commenterName}</span>
+//         {recipientName && (
+//           <span className="recipient-name"> &rarr; {recipientName}</span>
+//         )}
+//       </div>
+
+//       <div className="comment-content">{content}</div>
+
+//       <div className="comment-actions">
+//         <a className="reply-link" onClick={handleReplyClick}>
+//           Reply
+//         </a>
+//         {isReplying && (
+//           <div className="reply-field">
+//             <textarea
+//               rows="2"
+//               placeholder="Write a reply..."
+//               value={replyContent}
+//               onChange={handleReplyChange}
+//             ></textarea>
+//             <button onClick={handleReplySubmit}>Submit</button>
+//           </div>
+//         )}
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default Comment;

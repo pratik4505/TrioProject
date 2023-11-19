@@ -3,6 +3,7 @@ import "./commentBox.scss";
 
 import Comment from "./Comment";
 
+
 const CommentBox = (props) => {
   const [newComment, setNewComment] = useState("");
   const [commentsData, setCommentsData] = useState([]);
@@ -91,7 +92,7 @@ const CommentBox = (props) => {
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         />
-        <button onClick={newCommentHandler}>Add Comment</button>
+        <button onClick={newCommentHandler} className="AddComment-btn">Add Comment</button>
       </div>
 
       <div className="comments">

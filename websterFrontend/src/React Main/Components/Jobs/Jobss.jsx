@@ -1,4 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { CiSearch } from "react-icons/ci";
+import { FaSearchDollar } from "react-icons/fa";
+import { FaResearchgate } from "react-icons/fa";
+import { FaSearchPlus } from "react-icons/fa";
+import { IoMdSearch } from "react-icons/io";
+import { FaSearch } from "react-icons/fa";
 import "./jobss.scss";
 
 import AllJob from "./AllJob";
@@ -11,7 +17,7 @@ export default function Jobss() {
   const [industry, setIndustry] = useState("");
   const [company, setCompany] = useState("");
   const [jobsData, setJobsData] = useState([]);
-  const [currJobData, setCurrJobData] = useState(undefined);
+  const [currJobData, setCurrJobData] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
   const [isAll, setIsAll] = useState(true);
 
@@ -105,9 +111,14 @@ export default function Jobss() {
 
   return (
     <>
+    
       <div className="jobs">
         <div className="jobs-search">
-          <h1>Find a job</h1>
+           <div className="jobs-header">
+            <h1 className="h1-jobs"><b>Job Hunt</b></h1>
+            <button type="button" className="btn btn-primary search-jobs-btn" onClick={searchSwitchHandler}><b>Search</b></button>
+            <button type="button" className="btn btn-primary all-jobs-btn" onClick={allSwitchHandler}><b>Jobs</b></button>  
+        </div>    
           <input
             type="text"
             placeholder="Job title"
@@ -132,10 +143,10 @@ export default function Jobss() {
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
-          <button onClick={searchSwitchHandler}>Search</button>
-          <button onClick={allSwitchHandler}>All</button>
+          
         </div>
         <div className="all_jobs">
+        {currJobData && <Currjob data={currJobData} />}
           {jobsData.map((jobData) => (
             <AllJob key={jobData._id} data={jobData} onClick={jobHandler} />
           ))}
@@ -149,7 +160,6 @@ export default function Jobss() {
           )}
         </div>
       </div>
-      {currJobData && <Currjob data={currJobData} />}
     </>
   );
 }
