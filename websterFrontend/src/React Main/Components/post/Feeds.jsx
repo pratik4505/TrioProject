@@ -48,9 +48,7 @@ export default function Feeds() {
               postResponse1[postResponse1.length - 1].createdAt
             }`,
             {credentials: 'include',
-              headers: {
-                Authorization: `Bearer ${jwtToken}`,
-              }
+              
             }
           );
           const postResponse2 = await response2.json();

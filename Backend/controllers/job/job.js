@@ -37,12 +37,7 @@ exports.getJobSearch = async (req, res) => {
     if (location) query.location = location;
     if (company) query.companyName = company;
 
-    // lastId="65486a026baa1d9b279b4d00";
-    // if (typeof lastId ===true) {
-    //   query._id = { $gt: lastId };
-    // }
-
-   // console.log(query);
+   
     if (Object.keys(query).length === 0) {
       const jobOpenings = [];
       const moreDocuments = false;

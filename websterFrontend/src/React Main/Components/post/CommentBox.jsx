@@ -3,7 +3,6 @@ import "./commentBox.scss";
 
 import Comment from "./Comment";
 
-
 const CommentBox = (props) => {
   const [newComment, setNewComment] = useState("");
   const [commentsData, setCommentsData] = useState([]);

@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import './Comment.scss';
 
+<<<<<<< HEAD:websterFrontend/src/React Main/Components/post/Comment.jsx
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
+||||||| 3f760a0:websterFrontend/src/Components/post/Comment.jsx
+import getJwtTokenFromCookie from "../../../utils/cookieData";
+const jwtToken = getJwtTokenFromCookie();
+=======
+import getJwtTokenFromCookie from "../../utils/cookieData";
+const jwtToken = getJwtTokenFromCookie();
+>>>>>>> 1bda6ea5d8e2be94927ec08817b1f0a2ee13c263:websterFrontend/src/Components/post/Comment.jsx
 
 const Comment = (props) => {
    
@@ -102,61 +110,3 @@ export default Comment;
 
 
 
-// import React, { useState } from 'react';
-// import './Comment.css';
-
-// const Comment = ({ commentBy,commentById,content,replies,createdAt }) => {
-//   const [isReplying, setIsReplying] = useState(false);
-//   const [replyContent, setReplyContent] = useState('');
-
-//   const handleReplyClick = () => {
-//     setIsReplying((value)=>{return !value});
-//   };
-
-//   const handleReplyChange = (e) => {
-//     setReplyContent(e.target.value);
-//   };
-
-//   const handleReplySubmit = () => {
-//     // Handle the reply submission here (you can send the replyContent to your API or state management)
-//     // You may want to clear the reply field and update the UI as needed
-//     setIsReplying(false);
-//     setReplyContent('');
-//   };
-
-
-
-//   return (
-//     <div className="comment">
-
-//       <div className="comment-info">
-//         <span className="commenter-name">{commenterName}</span>
-//         {recipientName && (
-//           <span className="recipient-name"> &rarr; {recipientName}</span>
-//         )}
-//       </div>
-
-//       <div className="comment-content">{content}</div>
-
-//       <div className="comment-actions">
-//         <a className="reply-link" onClick={handleReplyClick}>
-//           Reply
-//         </a>
-//         {isReplying && (
-//           <div className="reply-field">
-//             <textarea
-//               rows="2"
-//               placeholder="Write a reply..."
-//               value={replyContent}
-//               onChange={handleReplyChange}
-//             ></textarea>
-//             <button onClick={handleReplySubmit}>Submit</button>
-//           </div>
-//         )}
-//       </div>
-
-//     </div>
-//   );
-// };
-
-// export default Comment;
