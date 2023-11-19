@@ -9,6 +9,7 @@ const postRoutes=require('./routes/posts/post');
 const commentRoutes=require('./routes/posts/comments');
 const userRoutes=require('./routes/users/profileRoutes');
 const messageRoutes=require('./routes/message/messageRoutes');
+const RNroutes=require('./routes/ReqAndNotify/RNroutes');
 const app =express();
 const bodyParser = require('body-parser');
 
@@ -93,7 +94,8 @@ app.use(authRoutes);
 app.use(postRoutes);
 app.use(commentRoutes);
 app.use(jobRoutes);
-app.use(messageRoutes)
+app.use(messageRoutes);
+app.use(RNroutes);
 
 
 app.use((req, res, next) => {
