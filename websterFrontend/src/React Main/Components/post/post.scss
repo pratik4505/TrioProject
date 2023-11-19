@@ -2,7 +2,6 @@
 .post-container {
   border-radius: 10px;
   padding: 20px;
- 
   border: 1px solid #ccc;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -62,22 +61,58 @@
   color: #999;
   font-size: 14px; /* Increased font size for date */
 }
-
 /* Hover effect */
 .like-button:hover,
 .comment-button:hover {
   background-color: #ddd;
 }
-
 /* complete_post.scss */
-
 .complete_post {
   display:flex;
   flex-direction: column;
-  max-width: 40%;
+  padding-left: 10%;
+  padding-right: 10%;
   margin:auto;
   margin-top : 4rem;
   margin-bottom : 4rem;
-  min-width: 300px;
 }
-
+.comment-button{
+  margin-right: 10px;
+}
+//site made responsive
+@media (max-width:732px) and (min-width:420px){
+  .Likes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .show-likes-btn{
+    width:40%;
+  }
+  .comment-btn{
+    width:40%;
+  }
+  .emoji-btn{
+    margin-bottom: 10px;
+  }
+  
+}
+@media (max-width:519px){
+  .Likes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .show-likes-btn{
+    width:40%;
+  }
+  .comment-btn{
+    width:40%;
+    font-size: smaller;
+  }
+  .emoji-btn{
+    height:33.5px;
+    margin-bottom: 5px;
+    padding:4px 8px;
+  }
+}
