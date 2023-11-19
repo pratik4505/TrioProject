@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
 import './Comment.scss';
 
-<<<<<<< HEAD:websterFrontend/src/React Main/Components/post/Comment.jsx
 const formatDate = (dateString) => {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
-||||||| 3f760a0:websterFrontend/src/Components/post/Comment.jsx
-import getJwtTokenFromCookie from "../../../utils/cookieData";
-const jwtToken = getJwtTokenFromCookie();
-=======
-import getJwtTokenFromCookie from "../../utils/cookieData";
-const jwtToken = getJwtTokenFromCookie();
->>>>>>> 1bda6ea5d8e2be94927ec08817b1f0a2ee13c263:websterFrontend/src/Components/post/Comment.jsx
 
 const Comment = (props) => {
    

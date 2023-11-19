@@ -1,6 +1,6 @@
 import React,{useState} from "react"
 import { useNavigate } from "react-router-dom";
-import { RegisterAPI } from "../../api/auth"
+import { RegisterAPI } from "../../../api/auth"
 
 import '../../sass/styling.scss';
 import { AiOutlineUser } from 'react-icons/ai';

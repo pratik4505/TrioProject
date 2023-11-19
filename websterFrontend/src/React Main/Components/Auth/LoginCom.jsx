@@ -1,6 +1,6 @@
 import React, { useState,useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import { LoginAPI } from "../../api/auth";
+import { LoginAPI } from "../../../api/auth";
 
 import { AiOutlineUser } from 'react-icons/ai';
 import {BsKey} from 'react-icons/bs';
