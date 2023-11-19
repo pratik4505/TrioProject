@@ -2,7 +2,7 @@ let io;
 const User = require("./models/user");
 const uuid = require("uuid");
 const Chat = require("./models/chat");
-
+const Notification=require("./models/notification");
 exports.init = (httpServer) => {
   io = require("socket.io")(httpServer);
   return io;
@@ -52,23 +52,22 @@ exports.runIO = (io) => {
 
     socket.on("endorsement", async (data) => {
       try {
-        const user = await User.findById(data.to).select("notifications");
+       
         const title = "An endorsement";
         const description = `${Name} endorsed your ${data.skill} skill with recommendation "${data.recommendation}"`;
-
-        const myUuid = uuid.v4();
-
-        user.notifications.set(myUuid, {
+    
+        const newNotification = new Notification({
           title: title,
           description: description,
+          userId: data.to,
         });
-
-        await user.save();
-
+    
+        await newNotification.save();
+    
         // Emit the notification to the specific user
         socket
           .to(data.to)
-          .emit("newNotification", { type: "endorsement", title, description });
+          .emit("newNotification", { _id: newNotification._id, type: "endorsement", title, description });
       } catch (error) {
         console.error("Error processing endorsement:", error);
       }
@@ -76,11 +75,10 @@ exports.runIO = (io) => {
 
     socket.on("request", async (data) => {
       try {
-        const currentUser = await User.findById(data.by).select("userName");
-        const userName = currentUser.userName;
+      
         socket
           .to(data.to)
-          .emit("newNotification", { type: data.type, userName });
+          .emit("newNotification", { type: data.type, userName:Name });
       } catch (error) {
         console.error("Error processing request:", error);
       }

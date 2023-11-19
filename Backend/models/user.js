@@ -14,20 +14,7 @@ const userSchema = new Schema({
   password: {
     type: String,
   },
-  notifications: {
-    type: Map,
-    of: {
-      title: {
-        type: String,
-        required: true,
-      },
-      description: String,
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  },
+  
   summary: String,
   industry: String,
   about: String,
