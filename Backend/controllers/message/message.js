@@ -57,9 +57,9 @@ exports.getMessages = async (req, res) => {
       .limit(limit);
 
       
-    const reversedMessages = messages.reverse();
+    const revMessages = messages.reverse();
 
-    res.json(reversedMessages);
+    res.json(revMessages);
   } catch (error) {
     console.error("Error fetching messages:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -80,17 +80,21 @@ exports.postMessage = async (req, res) => {
     // Save the message to the database
     await newMessage.save();
 
-    res.status(201).json({ message: "Message posted successfully" });
+    res.status(201).json({ message: "Message saved successfully" });
   } catch (error) {
     //console.error("Error posting message:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
+//this endpoint is for getting chats of connections and message-only users
 exports.getPossibleChats = async (req, res) => {
     try {
       const { chats, limit, skip } = req.body;
   
+
+
+
       const user = await User.findById(req.userId);
   
       // Check if user object has connections and messageOnly fields
@@ -122,7 +126,7 @@ exports.getPossibleChats = async (req, res) => {
   };
   
 
-
+//this endpoint is for creating chats of connections and message-only users
   exports.createChat=async (req, res) => {
     try {
       const userId = req.userId; // Assuming you have middleware to extract userId from the request
