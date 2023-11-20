@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Exp from "./Exp"; // Assuming you have a component named Exp for rendering individual experiences
 import '../../sass/Popup.scss';
+import './Experience.scss'
 import { v4 as uuidv4 } from "uuid";
 
 const def = {
@@ -157,7 +158,7 @@ function ExperienceContainer(props) {
                 />
               </div>
               <div className="card-footer">
-                <button className="btn btn-primary" onClick={handleSubmit}>
+                <button className="btn exp-submit-popup-btn" onClick={handleSubmit}>
                   Submit
                 </button>
                 <button className="btn btn-secondary" onClick={closePopup}>

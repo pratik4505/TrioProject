@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import '../../sass/Popup.scss';
+import './AddSkillPopup.scss'
 export default function AddSkillPopup(props) {
     const [skill, setSkill] = useState('');
 
@@ -33,7 +34,7 @@ export default function AddSkillPopup(props) {
        
       </div>
       <div className="card-footer">
-        <button className="btn btn-primary" onClick={handleSubmit}>
+        <button className="btn add-skill-popup-btn" onClick={handleSubmit}>
           Submit
         </button>
         <button className="btn btn-secondary" onClick={()=>props.onCancel()}>

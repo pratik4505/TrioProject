@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../sass/Popup.scss';
-
+import "./SectionAdd.scss"
 export default function SectionPopup(props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -44,7 +44,7 @@ export default function SectionPopup(props) {
           <br />
         </div>
         <div className="card-footer">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+          <button className="btn add-section-popup-btn" onClick={handleSubmit}>
             Add Section
           </button>
           <button className="btn btn-secondary" onClick={props.onCancel}>

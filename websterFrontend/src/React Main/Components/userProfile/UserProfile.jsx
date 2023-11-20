@@ -517,10 +517,12 @@ const UserProfile = (props) => {
             <hr></hr>
 
             <div className="container mt-3">
+            <div className="scrolling">
               <div className="experience-header-profile">
+            
                 <h1>Skills</h1>
                 {profileData.isOwner && (
-                  <button onClick={() => setSkillPopup(true)} className="add">
+                  <button onClick={() => setSkillPopup(true)} className="add btn btn-primary add-skills-profilesec-btn">
                     Add skill{" "}
                   </button>
                 )}
@@ -530,6 +532,7 @@ const UserProfile = (props) => {
                     onSubmit={onAddSkill}
                   />
                 )}
+                
                 {Object.entries(profileData.skills).map(([key, value]) => (
                   <Skill
                     key={key}
@@ -541,11 +544,9 @@ const UserProfile = (props) => {
                     skillKey={key}
                   />
                 ))}
+                </div>
               </div>
             </div>
-
-            <hr></hr>
-
             <div className="subcontainer">
               <button className="add" />
               {profileData.moreSections &&
@@ -555,13 +556,13 @@ const UserProfile = (props) => {
                     <div className="experience-header-profile">
                       {value.description}
                     </div>
-                    <button id={key} onClick={sectionDelete}>
+                    <button id={key} onClick={sectionDelete} className="btn">
                       Delete section
                     </button>
                   </div>
                 ))}
               {profileData.isOwner && (
-                <button onClick={() => setSectionPopup(true)}>
+                <button onClick={() => setSectionPopup(true)} className="btn btn-primary">
                   Add section
                 </button>
               )}
@@ -573,6 +574,11 @@ const UserProfile = (props) => {
               )}
             </div>
           </div>
+        </div>
+        
+        <hr></hr>
+        <div className="last-profile-ele">
+        <p>&copy;Lync:All rights Reserved</p>
         </div>
       </div>
     )

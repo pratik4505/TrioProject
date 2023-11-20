@@ -31,7 +31,7 @@ export default function AddRecPopup() {
        
       </div>
       <div className="card-footer">
-        <button className="btn btn-primary" onClick={handleSubmit}>
+        <button className="btn add-recpopup-btn" onClick={handleSubmit}>
           Endorse
         </button>
         <button className="btn btn-secondary" onClick={()=>props.onCancel()}>
