@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Edu from "./Edu";
 import '../../sass/Popup.scss';
+import './Education.scss'
 import { v4 as uuidv4 } from "uuid";
 const def = {
   imageUrl: "",
@@ -150,7 +151,7 @@ function EducationContainer(props) {
                 />
               </div>
               <div className="card-footer">
-                <button className="btn btn-primary" onClick={handleSubmit}>
+                <button className="btn edu-popup-submit-btn" onClick={handleSubmit}>
                   Submit
                 </button>
                 <button className="btn btn-secondary" onClick={closePopup}>

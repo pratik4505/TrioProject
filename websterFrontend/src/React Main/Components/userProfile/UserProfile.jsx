@@ -12,6 +12,7 @@ import SectionPopup from "./SectionPopup";
 import GlobalContext from "../../context/GlobalContext";
 import AddPostup from "./AddPostup";
 import ConnectionPopup from "./ConnectionPopup";
+import './userProfile.scss'
 
 const baseUrl = "http://localhost:3000";
 const UserProfile = (props) => {
@@ -372,11 +373,11 @@ const UserProfile = (props) => {
 
   return (
     profileData && (
-      <div className="full-body">
+      <div className="full-body-profile">
         <div className="info">
           <div className="container mt-3">
             <div className="row">
-              <div className="col-md-4">
+              
                 <div className="profile-picture">
                   {profileData.imageUrl&&<img
                     src={`${baseUrl}/${profileData.imageUrl}`}
@@ -384,26 +385,8 @@ const UserProfile = (props) => {
                     className="img-fluid rounded-circle"
                   />}
                 </div>
-                {profileData.isOwner && (
-                  <button onClick={() => setImagePopup(true)}>
-                    Update image
-                  </button>
-                )}
-                {imagePopup && (
-                  <ImageForm
-                    onCancel={() => setImagePopup(false)}
-                    imageHandler={(url) =>
-                      setProfileData((prev) => ({
-                        ...prev,
-                        imageUrl: `${baseUrl}/${url}`,
-                      }))
-                    }
-                  />
-                )}
-              </div>
-              {profileData.isOwner && (
-                <button onClick={() => setPostPopup(true)}>Add post</button>
-              )}
+                
+                
               {postPopup && (
                 <AddPostup
                   type="user"
@@ -415,29 +398,26 @@ const UserProfile = (props) => {
               {!profileData.isOwner && (
                 <div>
                   {!profileData.isConnection && !profileData.isConnecting && (
-                    <button onClick={connectRequest}>Connect</button>
+                    <button onClick={connectRequest} className="profile-connect-btn btn">Connect</button>
                   )}
                   {profileData.isConnecting && (
-                    <button>connection Request Sent</button>
+                    <button className="profile-connecting-btn btn">connection Request Sent</button>
                   )}
                   {!profileData.isConnection &&
                     !profileData.isConnecting &&
                     !profileData.isMessaging && (
-                      <button onClick={messageRequest}>Message</button>
+                      <button onClick={messageRequest} className="message-Request-btn btn">Message</button>
                     )}
                   {!profileData.isConnection &&
                     !profileData.isConnecting &&
                     profileData.isMessaging && (
-                      <button>Message Request Sent</button>
+                      <button className="message-Requestsent-btn btn">Message Request Sent</button>
                     )}
                 </div>
               )}
-              <div className="col-md-8">
-                {profileData.isOwner && (
-                  <button onClick={() => setDetailPopup(true)}>
-                    update details
-                  </button>
-                )}
+              
+              <div className="col-md-8 summary-profile">
+               
                 <h1>{profileData.userName}</h1>
                 <p>{profileData.summary}</p>
                 <p>{`${profileData.industry}`}</p>
@@ -455,6 +435,33 @@ const UserProfile = (props) => {
                   />
                 )}
               </div>
+              
+              <div className="All-btns-profile">
+              {profileData.isOwner && (
+                  <button onClick={() => setDetailPopup(true)} className="update-details-btn btn">
+                    Update details
+                  </button>
+                )}
+              {profileData.isOwner && (
+                <button onClick={() => setPostPopup(true)} className="add-post-btn btn">Add post</button>
+              )}
+              {profileData.isOwner && (
+                  <button onClick={() => setImagePopup(true)} className="btn update-image-profile">
+                    Update image
+                  </button>
+                )}
+              </div>
+              {imagePopup && (
+                  <ImageForm
+                    onCancel={() => setImagePopup(false)}
+                    imageHandler={(url) =>
+                      setProfileData((prev) => ({
+                        ...prev,
+                        imageUrl: `${baseUrl}/${url}`,
+                      }))
+                    }
+                  />
+                )}
               {detailPopup && (
                 <DetailForm
                   detailHandler={detailFinish}
@@ -467,21 +474,21 @@ const UserProfile = (props) => {
                   cancel={() => setDetailPopup(false)}
                 />
               )}
+              
             </div>
 
             <hr></hr>
 
-            <div className="row mt-4">
+            <div className="row  mt-4 about-section">
+            <div className="header-about-section">
+                <h1>About</h1>
+                <p>{profileData.about}</p>
+              </div>
               {profileData.isOwner && (
-                <button onClick={() => setAboutPopup(true)}>
+                <button onClick={() => setAboutPopup(true)} className="update-about-btn btn">
                   update About
                 </button>
               )}
-              <div className="col-md-12">
-                <h2>About</h2>
-
-                <p>{profileData.about}</p>
-              </div>
               {aboutPopup && (
                 <AboutForm
                   aboutHandler={aboutFinish}

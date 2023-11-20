@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "../../sass/Popup.scss";
+import "./ImageForm.scss"
 
 const baseUrl = "http://localhost:3000";
 export default function ImageForm(props) {
@@ -55,7 +56,7 @@ export default function ImageForm(props) {
           <br />
         </div>
         <div className="card-footer">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+          <button className="btn image-form-submit-btn" onClick={handleSubmit}>
             Submit
           </button>
           <button className="btn btn-secondary" onClick={closePopup}>

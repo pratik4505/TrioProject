@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../../sass/Popup.scss';
+import './DetailForm.scss'
 function DetailForm(props) {
   const [formData, setFormData] = useState(props.data);
 
@@ -64,7 +65,7 @@ function DetailForm(props) {
           />
         </div>
         <div className="card-footer">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+          <button className="btn submit-detail-popup-btn" onClick={handleSubmit}>
             Submit
           </button>
           <button className="btn btn-secondary" onClick={closePopup}>

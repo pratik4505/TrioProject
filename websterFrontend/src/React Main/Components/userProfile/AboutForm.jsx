@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import '../../sass/Popup.scss';
+import './AboutPopup.scss'
 export default function AboutForm(props) {
     const [about, setAbout] = useState(props.about);
 
@@ -34,7 +35,7 @@ export default function AboutForm(props) {
        
       </div>
       <div className="card-footer">
-        <button className="btn btn-primary" onClick={handleSubmit}>
+        <button className="btn about-submit-popup-btn" onClick={handleSubmit}>
           Submit
         </button>
         <button className="btn btn-secondary" onClick={closePopup}>

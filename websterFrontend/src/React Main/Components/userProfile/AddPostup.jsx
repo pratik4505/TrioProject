@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../sass/Popup.scss';
+import "./AddPost.scss"
 const baseUrl = "http://localhost:3000";
 export default function AddPostup(props) {
   const [formdata, setFormdata] = useState({
@@ -85,13 +86,10 @@ export default function AddPostup(props) {
             id="videoUrl"
             className="form-control"
             onChange={handleFileChange}
-          />
-         
-       
-          
+          />  
         </div>
         <div className="card-footer">
-          <button className="btn btn-primary" onClick={handleSubmit}>
+          <button className="btn submit-add-post-btn" onClick={handleSubmit}>
             Submit
           </button>
           <button className="btn btn-secondary" onClick={closePopup}>
