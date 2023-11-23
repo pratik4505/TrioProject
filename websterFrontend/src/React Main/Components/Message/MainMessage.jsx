@@ -6,7 +6,7 @@ import GlobalContext from "../../context/GlobalContext";
 import "./mainMessage.scss";
 const baseUrl = "http://localhost:3000";
 export default function MainMessage() {
-    const gloContext = useContext(GlobalContext);
+  const gloContext = useContext(GlobalContext);
   const [chats, setChats] = useState([]);
   const [currChat, setCurrChat] = useState(null);
   const [popup, setPopup] = useState(false);
@@ -71,19 +71,19 @@ export default function MainMessage() {
           chats={chats}
         />
       )}
-      <section className="chat__section">
-        <div className="brand">
-          <img height="40"  alt="Lync" />
+      <div className="chat__section">
+        <div className="brand-message-section">
           <h1>Lync</h1>
           <button
             onClick={() => {
               setPopup(true);
             }}
+            className="btn add-chats-messaging"
           >
             Add Chats
           </button>
         </div>
-        <div>
+        <div className="chatlist-messaging">
           {chats.map((chat) => (
             <ChatList
               key={chat.chatId}
@@ -93,7 +93,7 @@ export default function MainMessage() {
             />
           ))}
         </div>
-      </section>
+      </div>
       {currChat && <MessageContainer key={currChat.chatId}data={currChat} />}
     </div>
   );

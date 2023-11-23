@@ -19,3 +19,25 @@
   .popup-content.card {
     border: none;
   }
+  .loadmore-message-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #9F8FFF;
+    height:fit-content;
+    width: fit-content;
+    color:white;
+  }
+  .load-more-section-messaging{
+    height: fit-content;
+    width: fit-content;
+  }
+  .add-chat-section-messaging{
+    height:fit-content;
+    width: fit-content;
+  }
+  .close-chat-section{
+    height: fit-content;
+    width: fit-content;
+  }

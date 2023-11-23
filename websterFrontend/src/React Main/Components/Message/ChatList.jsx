@@ -21,7 +21,7 @@ export default function ChatList(props) {
           alt="Profile"
           className="profile-image"
         />}
-        <p>{props.chat.otherMemberName}</p>
+        <p><b>{props.chat.otherMemberName}</b></p>
         {unreadMsg&&props.currChat.chatId!==props.chat.chatId&&<p className='unread'>{unreadMsg}</p>}
       </div>
   )

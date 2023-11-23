@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./addChatPopup.scss"
 const baseUrl = "http://localhost:3000";
 let chatsPerPage=5;
 export default function AddChatPopup(props) {
@@ -53,12 +53,12 @@ export default function AddChatPopup(props) {
           <div className="brand" key={data._id}>
             {data.imageUrl&&<img height="40" src={`${baseUrl}/${data.imageUrl}`} alt="" />}
             <h1>{data.userName}</h1>
-            <button onClick={() => props.chatAdder(data._id)}>Add</button>
+            <button onClick={() => props.chatAdder(data._id)}  className="btn btn-primary add-chat-section-messaging">Add</button>
           </div>
         ))}
-        {loadMore && <button onClick={dataLoad}>Load More</button>}
+        {loadMore && <button onClick={dataLoad} className="btn btn-primary load-more-section-messaging">Load More</button>}
       </div>
-      <button onClick={() => props.onCancel()}>Close</button>
+      <button className="btn btn-primary close-chat-section" onClick={() => props.onCancel() }>Close</button>
     </div>
   );
 }

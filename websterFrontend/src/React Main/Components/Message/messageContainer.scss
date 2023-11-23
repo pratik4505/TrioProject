@@ -67,3 +67,19 @@ textarea {
     color: #333;
     font-size: 14px;
 }
+.textarea-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#textarea{
+    background-color: #ddd;
+    margin-right: 15px;
+}
+.loadmore-messaging-section{
+    height:fit-content;
+    width: fit-content;
+    background-color: #ddd;
+    color: black;
+}

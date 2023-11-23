@@ -116,7 +116,7 @@ export default function MessageContainer(props) {
   };
 
   return (
-    <section className="chat__section">
+    <div className="chat__section">
       <div className="brand">
         {props.data.otherMemberImageUrl && (
           <img
@@ -128,7 +128,7 @@ export default function MessageContainer(props) {
         <h1>{props.data.otherMemberName}</h1>
       </div>
       <ScrollToBottom className="message__area">
-        {loadMore && <button onClick={messageLoader}>Load More</button>}
+        {loadMore && <button onClick={messageLoader} className="btn btn-primary loadmore-messaging-section">Load More</button>}
         {messages.map((msg) => (
           <div
             className={`message ${
@@ -140,10 +140,10 @@ export default function MessageContainer(props) {
           </div>
         ))}
       </ScrollToBottom>
-      <div>
+      <div className="textarea-container">
         <textarea
           id="textarea"
-          cols="30"
+          cols="25"
           rows="1"
           value={currMsg}
           onChange={(e) => {
@@ -151,8 +151,8 @@ export default function MessageContainer(props) {
           }}
           placeholder="Write a message..."
         ></textarea>
-        <button onClick={sendMsg}>Send</button>
+        <button onClick={sendMsg} className="btn btn-primary">Send</button>
       </div>
-    </section>
+    </div>
   );
 }
