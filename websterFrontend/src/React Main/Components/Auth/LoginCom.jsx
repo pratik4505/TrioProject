@@ -64,7 +64,7 @@ export default function LoginComponent() {
     <div className="container">
       <div className="form-box">
         <h1>Log in</h1>
-        <img src="/Lyncwoback.png" alt="Lync" />
+        <img className='login-lync-wo-back' src="/Lyncwoback.png" alt="Lync" />
         <div className="input-group">
           <div className="input-field">
             <AiOutlineUser className="react-icons" />
