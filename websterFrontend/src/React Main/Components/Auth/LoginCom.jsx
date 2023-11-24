@@ -62,9 +62,9 @@ export default function LoginComponent() {
 
   return (
     <div className="container">
-      <img className="login-lync" src="/Lyncing.png"></img>
       <div className="form-box">
         <h1>Log in</h1>
+        <img src="/Lyncwoback.png" alt="Lync" />
         <div className="input-group">
           <div className="input-field">
             <AiOutlineUser className="react-icons" />
@@ -97,7 +97,7 @@ export default function LoginComponent() {
                 Log in
               </div>
             )}
-            {/* <div className="submitG" onClick={googleLoginHandler}>Log in with Google</div> */}
+            
            
           </div>
           <div className="register" >
