@@ -14,8 +14,11 @@ export default function Navbar() {
   const ownerId=cookies.get('userId');
   return (
     <div className="navbar-container">
+      
+      
       <div className="nav-bar">
-        <img src="/Lyncwoback.png"></img>
+      <img src="/Lyncwoback.png"></img>
+      
         <div className="link-bar">
           <Link to="/">
             <AiFillHome size={40} className="react-icons" />
@@ -24,6 +27,7 @@ export default function Navbar() {
             <Link to="/">Home</Link>
           </span>
         </div>
+        
         <div className="link-bar">
           <Link to="/Jobs">
             <BsBriefcase size={40} className="react-icons" />
@@ -32,6 +36,7 @@ export default function Navbar() {
             <Link to="/Jobs">Jobs</Link>
           </span>
         </div>
+        
         <div className="link-bar">
           <Link to="/Requests">
             <MdEmojiPeople size={40} className="react-icons" />
@@ -40,6 +45,7 @@ export default function Navbar() {
             <Link>Request</Link>
           </span>
         </div>
+        
         <div className="link-bar">
           <Link to="/Message">
             <BiSolidMessageDetail size={40} className="react-icons" />
@@ -48,6 +54,7 @@ export default function Navbar() {
             <Link to="/Message">Message</Link>
           </span>
         </div>
+        
         <div className="link-bar">
           <Link to="/Notifications">
             <IoIosNotifications size={40} className="react-icons" />
@@ -56,6 +63,7 @@ export default function Navbar() {
             <Link to="/Notifications">Notify</Link>
           </span>
         </div>
+        
         <div className="link-bar">
           <Link to={`/Profile/${ownerId}`}>
             <BiUserCircle size={40} className="react-icons" />
@@ -63,6 +71,7 @@ export default function Navbar() {
           <span>
             <Link to={`/Profile/${ownerId}`}>Profile</Link>
           </span>
+        
         </div>
       </div>
     </div>
