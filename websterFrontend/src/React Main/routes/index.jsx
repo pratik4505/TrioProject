@@ -1,5 +1,5 @@
-import { createBrowserRouter ,useNavigate} from "react-router-dom";
-import { useContext,useEffect } from "react";
+import { createBrowserRouter, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import Login from "../pages/login";
 import Jobs from "../pages/Jobs";
 import Requests from "../pages/Requests";
@@ -10,16 +10,17 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import GlobalContext from "../context/GlobalContext";
 
-const ProtectedRoute = ({ element }) => {
+const ProtectedRoute = ({ element, allowUnauthenticated, path }) => {
   const gloContext = useContext(GlobalContext);
   const navigate = useNavigate();
+
   useEffect(() => {
-    if (!gloContext.isLoggedIn) {
+    if (!gloContext.isLoggedIn && !allowUnauthenticated) {
       navigate('/Login');
     }
-  }, [gloContext.isLoggedIn]);
+  }, [gloContext.isLoggedIn, allowUnauthenticated]);
 
-  return gloContext.isLoggedIn ? element : null;
+  return gloContext.isLoggedIn || allowUnauthenticated ? element : null;
 };
 
 export const router = createBrowserRouter([
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/Register",
-    element: <ProtectedRoute element={<Register />} />,
+    element: <ProtectedRoute element={<Register />} allowUnauthenticated />,
   },
   {
     path: "/Login",
@@ -55,7 +56,6 @@ export const router = createBrowserRouter([
     path: "/Message",
     element: <ProtectedRoute element={<Message />} />,
   },
-  
   {
     path: "*", // This is a catch-all route for 404 errors
     element: <h1>Not Found</h1>,
